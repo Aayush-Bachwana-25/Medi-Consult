@@ -14,17 +14,27 @@
         android:theme="@style/Theme.MediConsult"
         tools:targetApi="31">
         <activity
+            android:name=".ViewDoctorsList"
+            android:label="Doctors"
+            android:parentActivityName=".loginPatient"
+            android:exported="false" />
+        <activity
+            android:name=".ForgotPassword"
+            android:label="Reset Password"
+            android:parentActivityName=".MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".loginAdmin"
             android:exported="false" />
         <activity
             android:name=".loginDoctor"
+            android:label="Dashboard"
+            android:parentActivityName=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.login.loginDoctor"
-            android:exported="false"
-            android:label="@string/title_activity_login_doctor" />
-        <activity
             android:name=".loginPatient"
+            android:label="Dashboard"
+            android:parentActivityName=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".RegisterDoctor"

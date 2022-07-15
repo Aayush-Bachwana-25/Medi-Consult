@@ -1,55 +1,40 @@
 package com.example.medi_consult;
 
+import java.util.ArrayList;
+
 public class Appointment {
-    private int appointmentID;
-    private int patientId;
-    private int doctorId;
+    private String patientId;
+    private String doctorId;
     private String date;
     private String time;
-    private  String disease;
-    private  String[] allergies;
+    private ArrayList<String> allergies=new ArrayList<>();
 
-    public String getDisease() {
-        return disease;
-    }
 
-    public void setDisease(String disease) {
-        this.disease = disease;
-    }
-
-    public String[] getAllergies() {
-        return allergies;
+    public ArrayList<String> getAllergies() {
+        return this.allergies;
     }
 
     public void setAllergies(String allergies) {
-        this.allergies = allergies.split(",");
+        String[] allergy = allergies.split(",");
 
-        for(int i=0;i<this.allergies.length;i++){
-            this.allergies[i]=this.allergies[i].trim();
+        for(int i=0;i<allergy.length;i++){
+            this.allergies.add(allergy[i].trim());
         }
     }
 
-    public int getAppointmentID() {
-        return appointmentID;
-    }
-
-    public void setAppointmentID(int appointmentID) {
-        this.appointmentID = appointmentID;
-    }
-
-    public int getPatientId() {
+    public String getPatientId() {
         return patientId;
     }
 
-    public void setPatientId(int patientId) {
+    public void setPatientId(String patientId) {
         this.patientId = patientId;
     }
 
-    public int getDoctorId() {
+    public String getDoctorId() {
         return doctorId;
     }
 
-    public void setDoctorId(int doctorId) {
+    public void setDoctorId(String doctorId) {
         this.doctorId = doctorId;
     }
 
@@ -69,13 +54,11 @@ public class Appointment {
         this.time = time;
     }
 
-    public Appointment(int appointmentID, int patientId, int doctorId, String date, String time,String disease,String allergies) {
-        this.appointmentID = appointmentID;
+    public Appointment(String  patientId, String  doctorId, String date, String time,String allergies) {
         this.patientId = patientId;
         this.doctorId = doctorId;
         this.date = date;
         this.time = time;
-        this.disease=disease;
         this.setAllergies(allergies);
     }
 }

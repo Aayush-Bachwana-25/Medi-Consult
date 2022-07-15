@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -133,15 +132,29 @@
             android:textColor="#9C1C1C"
             android:visibility="gone" />
 
+        <TextView
+            android:id="@+id/textViewEmailNotVerified"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/radiogroup"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="20px"
+            android:layout_marginEnd="32dp"
+            android:text="@string/emailVerificationText"
+            android:textColor="#9C1C1C"
+            android:visibility="gone" />
+
 
         <Button
             android:id="@+id/login_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/textViewEmailNotVerified"
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
-            android:layout_below="@id/textViewErrorLogin"
             android:backgroundTint="@color/teal_200"
             android:text="Login" />
 

@@ -1,3 +1,4 @@
+
 package com.example.medi_consult;
 
 import androidx.annotation.NonNull;
@@ -165,10 +166,11 @@ public class RegisterDoctor extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
 
-                            Doctor doctor=new Doctor(firstName,lastName,email,password,mobile,address,editTextFees.getText().toString(),editTextDegree.getText().toString(),editTextSpecialization.toString());
+                            String uid=FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+                            Doctor doctor=new Doctor(uid,firstName,lastName,email,password,mobile,address,editTextFees.getText().toString(),editTextDegree.getText().toString(),editTextSpecialization.getText().toString());
                             FirebaseDatabase.getInstance().getReferenceFromUrl("https://medi-consult-1bad8-default-rtdb.firebaseio.com/Doctors/")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .child(uid)
                                     .setValue(doctor)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override

@@ -9,7 +9,8 @@ public class Patient extends Person{
 
     Patient(){}
 
-    Patient(String firstname,String lastName,String emailAddress,String password,String mobile,String Address,List<String> symptoms){
+    Patient(String id,String firstname,String lastName,String emailAddress,String password,String mobile,String Address,List<String> symptoms){
+        this.setId(id);
         this.setUsertype(Macros.PATIENT);
         this.setFirstName(firstname);
         this.setLastName(lastName);

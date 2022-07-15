@@ -2,6 +2,7 @@ package com.example.medi_consult;
 
 public abstract class Person {
     protected int usertype;
+    protected String Id;
     protected String firstName;
     protected String lastName;
     protected String emailAddress ;
@@ -12,6 +13,15 @@ public abstract class Person {
 
     public int getUsertype() {
         return usertype;
+    }
+
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String Id) {
+        this.Id = Id;
     }
 
     public void setUsertype(int usertype) {

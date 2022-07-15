@@ -26,5 +26,7 @@
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
+    <string name="login_failed">Login failed</string>
+    <string name="emailVerificationText">Please check your email to verify the e-mail address.</string>
+    <string name="resetPasswordMessage">If you\'re a registered user,an email has been sent to you to Reset Password.Kindly check you mail!</string>
 </resources>

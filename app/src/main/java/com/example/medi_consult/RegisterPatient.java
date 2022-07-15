@@ -142,11 +142,11 @@ public class RegisterPatient extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-
-                            Patient patient=new Patient(firstName,editTextLastName.getText().toString(),email,password,mobile,address,symp);
+                            String uid=FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            Patient patient=new Patient(uid,firstName,editTextLastName.getText().toString(),email,password,mobile,address,symp);
 
                             FirebaseDatabase.getInstance().getReferenceFromUrl("https://medi-consult-1bad8-default-rtdb.firebaseio.com/Patients/")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .child(uid)
                                     .setValue(patient)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override

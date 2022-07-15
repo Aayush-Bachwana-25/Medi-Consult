@@ -28,7 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText editTextEmail,editTextPassword;
-    private TextView textViewErrorLogin,textViewForgotPassword,textViewErrorSelectUser,textViewInvalidUser;
+    private TextView textViewErrorLogin,textViewForgotPassword,textViewErrorSelectUser,textViewInvalidUser,textViewEmailVerification;
     private ProgressBar progressBar;
     private Button buttonLogin,buttonPatient,buttonDoctor;
     private RadioButton patientRadio,doctorRadio,adminRadio;
@@ -43,9 +43,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editTextEmail=(EditText) findViewById(R.id.loginPageEmailEditText);
         editTextPassword=(EditText) findViewById(R.id.loginPagePasswordEditText);
         textViewErrorLogin=(TextView) findViewById(R.id.textViewErrorLogin);
-        textViewForgotPassword=(TextView) findViewById(R.id.textViewForgotPassword);
         textViewErrorSelectUser=(TextView) findViewById(R.id.textViewSelectRadio);
         textViewInvalidUser=(TextView) findViewById(R.id.textViewInvalidUser);
+        textViewEmailVerification=(TextView) findViewById(R.id.textViewEmailNotVerified);
         progressBar=(ProgressBar) findViewById(R.id.mainActivityIndeterminateProgressbar);
 
         patientRadio=(RadioButton) findViewById(R.id.radioPatient);
@@ -60,6 +60,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         buttonDoctor=(Button) findViewById(R.id.buttonDoctor);
         buttonDoctor.setOnClickListener(this);
+
+        textViewForgotPassword=(TextView) findViewById(R.id.textViewForgotPassword);
+        textViewForgotPassword.setOnClickListener(this);
 
         mAuth=FirebaseAuth.getInstance();
     }
@@ -76,10 +79,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.login_button:
-                loginUser();
                 textViewInvalidUser.setVisibility(View.GONE);
-                textViewErrorLogin.setVisibility(View.INVISIBLE);
+                textViewErrorLogin.setVisibility(View.GONE);
                 textViewErrorSelectUser.setVisibility(View.GONE);
+                textViewEmailVerification.setVisibility(View.INVISIBLE);
+                loginUser();
+                break;
+
+            case R.id.textViewForgotPassword:
+                startActivity(new Intent(MainActivity.this,ForgotPassword.class));
                 break;
         }
     }
@@ -136,11 +144,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                          progressBar.setVisibility(View.GONE);
 
                                          if(patient==null){
+                                             textViewEmailVerification.setVisibility(View.INVISIBLE);    //Because loginButton is constrained to this layout
                                              textViewInvalidUser.setVisibility(View.VISIBLE);
                                          }
                                          else{
-                                             Intent intent=new Intent(MainActivity.this, loginPatient.class);
-                                             startActivity(intent);
+                                             if(user.isEmailVerified()){
+                                                 Intent intent=new Intent(MainActivity.this, loginPatient.class);
+                                                 startActivity(intent);
+                                             }
+                                             else{
+                                                 user.sendEmailVerification();
+                                                 textViewEmailVerification.setVisibility(View.VISIBLE);
+                                             }
                                          }
                                      }
                                      @Override
@@ -165,11 +180,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                         progressBar.setVisibility(View.GONE);
 
                                         if(doctor==null){
+                                            textViewEmailVerification.setVisibility(View.INVISIBLE);    //Because loginButton is constrained to this layout
                                             textViewInvalidUser.setVisibility(View.VISIBLE);
                                         }
                                         else{
-                                            Intent intent=new Intent(MainActivity.this, loginDoctor.class);
-                                            startActivity(intent);
+                                            if(user.isEmailVerified()){
+                                                Intent intent=new Intent(MainActivity.this, loginDoctor.class);
+                                                startActivity(intent);
+                                            }
+                                            else{
+                                                user.sendEmailVerification();
+                                            }
                                         }
                                     }
                                     @Override
@@ -188,12 +209,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             //if nothing is selected
                             if(flag==false){
                                 progressBar.setVisibility(View.GONE);
+                                textViewEmailVerification.setVisibility(View.INVISIBLE);    //Because loginButton is constrained to this layout
                                 textViewErrorSelectUser.setVisibility(View.VISIBLE);
                                 return;
                             }
                         }
                         else{
                             progressBar.setVisibility(View.GONE);
+                            textViewEmailVerification.setVisibility(View.INVISIBLE);    //Because loginButton is constrained to this layout
                             textViewErrorLogin.setVisibility(View.VISIBLE);
                         }
                     }
