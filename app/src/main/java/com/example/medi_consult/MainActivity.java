@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView textViewErrorLogin,textViewForgotPassword,textViewErrorSelectUser,textViewInvalidUser,textViewEmailVerification;
     private ProgressBar progressBar;
     private Button buttonLogin,buttonPatient,buttonDoctor;
-    private RadioButton patientRadio,doctorRadio,adminRadio;
+    private RadioButton patientRadio,doctorRadio;
 
     private FirebaseAuth mAuth;
 
@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         patientRadio=(RadioButton) findViewById(R.id.radioPatient);
         doctorRadio=(RadioButton) findViewById(R.id.radioDoctor);
-        adminRadio=(RadioButton) findViewById(R.id.radioAdmin);
 
         buttonLogin=(Button) findViewById(R.id.login_button);
         buttonLogin.setOnClickListener(this);
@@ -201,10 +200,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 });
                                 flag=true;
                             }
-//                            if(adminRadio.isChecked()){
-//                                flag=true;
-//                                intent=new Intent(MainActivity.this, loginAdmin.class);
-//                            }
 
                             //if nothing is selected
                             if(flag==false){
