@@ -2,13 +2,12 @@
 * Created a Java based android application to provide an online platform of medical consultancy.
 * Users can be of 2 types: Patients & Doctors. Patients can create account, sign-in, view doctors, book appointments; while doctors can also register themselves, view appointments, manage appointments.
 * Also added functionality like: authentication, e-mail verification, reset password, etc.
-* Built using: Java, XML, Firebase.
 
 # Technologies Used:
 Java, XML, Firebase
 
 # Source Code:
-* ![Java Files](/app/src/main/java/com/example/medi-consult/)
+* ![Java Files](/app/src/main/java/com/example/medi_consult/)
 * ![Layout Resource Files](/app/src/main/res/layout/)
 
 # Images:
